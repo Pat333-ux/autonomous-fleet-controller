@@ -1,0 +1,41 @@
+name: Fleet Controller Dispatcher
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Fleet Action'
+        required: true
+        default: 'status'
+        type: choice
+        options:
+          - status
+          - patrol
+
+permissions:
+  contents: write
+
+jobs:
+  run-fleet-command:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Fleet Controller
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Execute Fleet Command
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          python pat333_cli.py ${{ github.event.inputs.action || 'status' }}
