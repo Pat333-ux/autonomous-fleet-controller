@@ -1,0 +1,7 @@
+# 🎛️ Autonomous Fleet Controller (`pat333-cli`)
+
+> **Governing Authority:** Governing Officer Tarwater  
+> **Control Plane:** Governed under `autonomous-governance-core`
+
+## Overview
+`autonomous-fleet-controller` is the master command-line interface and executive synchronization bus for your complete 7-repository autonomous software ecosystem. It provides global fleet status checks, synchronized workflow patrols, and instantaneous ecosystem-wide kill-switch propagation.
